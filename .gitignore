@@ -1,0 +1,8 @@
+# Secrets file
+on_demand/secrets.py
+
+# Virtual Env
+**/venv
+
+# API-Key
+data-ingestion-sample1-03dbf59b9e68.json
