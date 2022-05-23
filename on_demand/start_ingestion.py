@@ -26,4 +26,4 @@ for filename,filepath in SOURCE_FILE_PATH.items():
 
     ingestion_process._create_or_replace_table(table_id, GCS_RAW_DATASET)
 
-    # Start DBT modeling
+    # End of Ingestion

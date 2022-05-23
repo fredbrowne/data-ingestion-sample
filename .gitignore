@@ -1,3 +1,5 @@
+on_demand/__pycache__/
+on_demand/classes/__pycache__/
 # Secrets file
 on_demand/secrets.py
 
@@ -6,3 +8,11 @@ on_demand/secrets.py
 
 # API-Key
 data-ingestion-sample1-03dbf59b9e68.json
+
+#dbt
+on_demand/data_ingestion_sample1/target/**
+on_demand/data_ingestion_sample1/dbt_modules/**
+on_demand/data_ingestion_sample1//logs/**
+on_demand/logs/
+
+

@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: raw
+    database: "{{ env_var('GCP_PROJECT_ID') }}"
+    schema: "{{ env_var('RAW_DATASET_ID') }}"
+    tables:
+      - name: trips
+
+models:
+  - name: stg_trips
+    description: "Normalized Trips data"
+    columns:
+      - name: region
+        description: " Region the trip took place"
+      - name: origin_coord_lat
+        description: "Latitude information from the Origin of the trip"
+      - name: origin_coord_lon
+        description: "Longitude information from the Origin of the trip"
+      - name: destination_coord_lat
+        description: "Latitude information from the Destination of the trip"
+      - name: destination_coord_lon
+        description: "Longitude information from the Destination of the trip"
+      - name: datetime
+        description: "Datetime of the current record"
+      - name: datasource
+        description: "Source origin of the data"

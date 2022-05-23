@@ -6,6 +6,8 @@
 
     - _retrieve_file()
     - _upload_file_gcs()
+    - _get_or_create_bigquery_datasets()
+    - _create_or_replace_table
 '''
 from gcloud import storage
 from google.cloud import bigquery
@@ -17,7 +19,7 @@ from const import (
 )
 
 class Ingestion():
-    def __init__(self, file_name, field_delimiter):
+    def __init__(self, file_name, field_delimiter=','):
         self.file_name = file_name
         self.field_delimiter = field_delimiter
         self.file_path = ''
@@ -26,6 +28,9 @@ class Ingestion():
         self.file_path = ''.join([path,self.file_name])
 
     def _upload_file_gcs(self):
+        '''
+            Function responsible to upload the file into GCS.
+        '''
         # Cloud information
         self.client = storage.Client(GCS_PROJECT_ID)
 
@@ -43,6 +48,12 @@ class Ingestion():
         self.uploaded_file_URI = f'gs://{GCS_BUCKET_NAME}/{destination}'
 
     def _get_or_create_bigquery_datasets(self, dataset_id):
+        '''
+            Function responsible to set up the environment
+            and create the dataset.
+            Params:
+                - dataset_id: dataset to be created
+        '''
         client = bigquery.Client(GCS_PROJECT_ID)
         dataset_id = f"{GCS_PROJECT_ID}.{dataset_id}"
         dataset = bigquery.Dataset(dataset_id)
@@ -61,6 +72,12 @@ class Ingestion():
             )
 
     def _create_or_replace_table(self, table_id, dataset):
+        '''
+            Function responsible to create or replace table in the dataset.
+            Params:
+                - table_id: table name to retrieve schema and create in data-lake
+                - dataset: dataset that will hold the table
+        '''
         client = bigquery.Client(GCS_PROJECT_ID)
 
         full_table_id = f'{GCS_PROJECT_ID}.{GCS_RAW_DATASET}.{table_id}'
@@ -71,7 +88,7 @@ class Ingestion():
             skip_leading_rows=1,
             source_format=bigquery.SourceFormat.CSV,
         )
-        
+
         #Load Job into BQ
         load_job = client.load_table_from_uri(
             self.uploaded_file_URI

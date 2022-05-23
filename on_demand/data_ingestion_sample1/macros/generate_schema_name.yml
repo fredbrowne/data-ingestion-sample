@@ -1,0 +1,11 @@
+version: 2
+
+macros:
+  - name: generate_schema_name
+    description: This macro will override the original generate_schema_name to remove the <target_schema> from the dataset name.
+    docs:
+      show: true
+    arguments:
+      - name: custom_schema_name
+        type: string
+        description: The modified schema name to override the profile while executing based on dataset type.
