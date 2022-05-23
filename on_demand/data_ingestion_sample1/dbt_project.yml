@@ -32,7 +32,7 @@ models:
     # Config indicated by + and applies to all files under models/example/
     visual:
       +materialized: view
-      +schema: "{{ env_var('VISUAL_DATASET_ID') }}"
+      +schema: "{{ env_var('GCS_VISUAL_DATASET') }}"
     staging:
       +materialized: view
-      +schema: "{{ env_var('STAGING_DATASET_ID') }}"
+      +schema: "{{ env_var('GCS_STAGING_DATASET') }}"

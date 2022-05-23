@@ -1,10 +1,13 @@
 # Project and Bucket
-GCS_PROJECT_ID = 'data-ingestion-sample1'
-GCS_BUCKET_NAME = 'data-ingestion-sample1-data-lake-source-files'
+import os
+GCP_PROJECT_ID = os.getenv('GCP_PROJECT_ID')
+GCS_BUCKET_NAME = os.getenv('GCS_BUCKET_NAME')
+
 # Datasets
-GCS_RAW_DATASET = 'dataset_bigquery_raw_data_lake'
-GCS_STAGING_DATASET = 'dataset_bigquery_staging_data_lake'
-GCS_VISUAL_DATASET = 'dataset_bigquery_visual_data_lake'
+GCS_RAW_DATASET = os.getenv('GCS_RAW_DATASET')
+GCS_STAGING_DATASET = os.getenv('GCS_STAGING_DATASET')
+GCS_VISUAL_DATASET = os.getenv('GCS_VISUAL_DATASET')
+
 # Initial File Source location
 SOURCE_FILE_PATH = {
     'trips.csv':'../data-ingestion-sample/source_files/',

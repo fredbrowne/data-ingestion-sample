@@ -12,7 +12,7 @@
 from gcloud import storage
 from google.cloud import bigquery
 from const import (
-    GCS_PROJECT_ID,
+    GCP_PROJECT_ID,
     GCS_BUCKET_NAME,
     GCS_RAW_DATASET,
     get_schema,
@@ -32,7 +32,7 @@ class Ingestion():
             Function responsible to upload the file into GCS.
         '''
         # Cloud information
-        self.client = storage.Client(GCS_PROJECT_ID)
+        self.client = storage.Client(GCP_PROJECT_ID)
 
         # Get the bucket or create
         try:
@@ -54,20 +54,20 @@ class Ingestion():
             Params:
                 - dataset_id: dataset to be created
         '''
-        client = bigquery.Client(GCS_PROJECT_ID)
-        dataset_id = f"{GCS_PROJECT_ID}.{dataset_id}"
+        client = bigquery.Client(GCP_PROJECT_ID)
+        dataset_id = f"{GCP_PROJECT_ID}.{dataset_id}"
         dataset = bigquery.Dataset(dataset_id)
         dataset.location = "US"
         try:
             dataset = client.get_dataset(dataset_id)
             print("Dataset already exists {}.{}".format(
-                GCS_PROJECT_ID
+                GCP_PROJECT_ID
                 ,dataset.dataset_id)
             )
         except:
             dataset = client.create_dataset(dataset, timeout=30)
             print("Created dataset {}.{}".format(
-                GCS_PROJECT_ID
+                GCP_PROJECT_ID
                 ,dataset.dataset_id)
             )
 
@@ -78,9 +78,9 @@ class Ingestion():
                 - table_id: table name to retrieve schema and create in data-lake
                 - dataset: dataset that will hold the table
         '''
-        client = bigquery.Client(GCS_PROJECT_ID)
+        client = bigquery.Client(GCP_PROJECT_ID)
 
-        full_table_id = f'{GCS_PROJECT_ID}.{GCS_RAW_DATASET}.{table_id}'
+        full_table_id = f'{GCP_PROJECT_ID}.{GCS_RAW_DATASET}.{table_id}'
 
         job_config = bigquery.LoadJobConfig(
             write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE,
