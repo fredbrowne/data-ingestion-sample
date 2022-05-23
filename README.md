@@ -61,6 +61,12 @@ The process has now:
         - latest_datasorce
             The lastest Datasource that appeared for the two most common regions
 
+
+# SQL files
+
+All SQL files can be found inside folder:
+`on_demand/data_ingestion_sample1/models`
+
 # Whats in the Future?
 
 Things to move forward:
