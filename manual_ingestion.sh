@@ -15,4 +15,4 @@ echo *****On Demand Ingestion process has ended
 
 cd on_demand/data_ingestion_sample1
 
-dbt run
+dbt --no-version-check run

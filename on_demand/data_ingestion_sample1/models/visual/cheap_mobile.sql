@@ -4,6 +4,6 @@
 SELECT 
   region
   ,count(*) Cheap_Mobile_Count
-FROM {{ ref(stg_trips) }}
+FROM {{ ref('stg_trips') }}
 WHERE datasource = 'cheap_mobile'
 group by region
