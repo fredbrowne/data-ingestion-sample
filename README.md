@@ -61,4 +61,9 @@ The process has now:
         - latest_datasorce
             The lastest Datasource that appeared for the two most common regions
 
-Query away!
+# Whats in the Future?
+
+Things to move forward:
+ - Add Cloud Composer (Airflow) to control the pipelines
+ - Include upload to AWS and AZURE as well as DBT connectors
+ - Create Visualization with any BI Tool (Google Data Studio is a good choice since it's free and can connect to BigQuery easily)
